@@ -1,5 +1,7 @@
 # 数据与输出（不随仓库提供）
 *.wav
+!denoising/example_data/*.wav
+denoising/example_data/output/
 *.csv
 *.joblib
 *.rar

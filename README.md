@@ -40,9 +40,10 @@ paper_code/
 
 ## 四、复现步骤
 
-### 0. 准备数据（不随仓库提供）
+### 0. 准备数据
 
-- 原始心音数据集：Yaseen 等人公开数据集（`1,000 recordings, 5 classes`，4 kHz 单声道 WAV）。下载后按 `AS / MR / MS / MVP / N` 五个子目录放置，每类 200 个 wav。
+- **示例数据（已随仓库提供）**：`denoising/example_data/synth_000042_mix.wav`，可直接运行 `denoising/plot_042.py` 复现降噪展示图，无需下载。
+- **完整数据集（不随仓库提供）**：Yaseen 等人公开数据集（`1,000 recordings, 5 classes`，4 kHz 单声道 WAV）。下载后按 `AS / MR / MS / MVP / N` 五个子目录放置，每类 200 个 wav。
 - 目录约定：将数据集放在 `Feature Extraction/001_paper015/` 下（或修改各脚本顶部的 `PROJECT_DIR` / `BASE_DIR` 路径指向你的目录）。
 
 ### 1. 安装依赖
@@ -86,10 +87,10 @@ python training/gen_feature_reduction.py
 ## 五、重要说明
 
 1. **降噪展示图 vs 数据集降噪（算法不同，分开说明）**：
-   - 论文中的降噪效果展示图（`042_timefreq.png` / `042_wavelet.png`）由 `denoising/plot_042.py` 生成，使用的是 **V1 降噪算法**（`denoising.py`，28–240 Hz 带通 + 5 层 Haar 小波），示例输入为合成数据集 042 号。
+   - 论文中的降噪效果展示图（`042_timefreq.png` / `042_wavelet.png`）由 `denoising/plot_042.py` 生成，使用的是 **V1 降噪算法**（`denoising.py`，28–240 Hz 带通 + 5 层 Haar 小波），示例输入为合成数据集 042 号（已随仓库提供，见 `denoising/example_data/`）。
    - 论文实际训练数据集采用 **V2 降噪算法**（`denoising_v2.py` / `batch_denoise_paper.py`，25–500 Hz 带通 + 形态学基线消除 + 5 层 Haar 小波自适应阈值）。
    - 两者属于不同版本的降噪实现，请勿混淆。
 
-2. **硬编码路径**：脚本中的 `PROJECT_DIR`、`BASE_DIR`、`SRC`、`OUT` 等变量目前为 Windows 绝对路径，移植到其他环境时需改为你的实际路径（建议改为相对路径或环境变量）。
+2. **硬编码路径**：`batch_denoise_paper.py`、`extract_features_paper_denoised.py`、`run_exp1.py` 中的 `PROJECT_DIR` / `BASE_DIR` 仍为 Windows 绝对路径，移植时需改为你的实际路径；`plot_042.py` 已改为基于脚本目录的相对路径，无需修改。
 
-3. **数据不随仓库提供**：本仓库仅含代码，不含任何音频、特征 CSV、模型缓存（`.joblib`）文件，见 `.gitignore`。
+3. **数据不随仓库提供**：本仓库除一条示例音频（`denoising/example_data/synth_000042_mix.wav`）外，不含任何音频、特征 CSV、模型缓存（`.joblib`）文件，见 `.gitignore`。

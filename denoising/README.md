@@ -1,6 +1,6 @@
 # 降噪模块说明
 
-本模块包含心音信号降噪算法与效果展示，**只提供代码，不含任何音频文件**。
+本模块包含心音信号降噪算法与效果展示。随仓库提供**一条示例合成数据**（`example_data/synth_000042_mix.wav`，约 62 KB）用于降噪演示，其余数据（paper 数据集、合成数据集）不随仓库提供。
 
 ## 文件清单
 
@@ -34,7 +34,7 @@
 - 5 层 Haar 小波自适应阈值（`BASE_THRESHOLD_SCALE=0.38`，`DETAIL_THRESHOLD_WEIGHTS=[1.00, 0.85, 0.60, 0.38, 0.24]`）
 - 噪声门（0.24 / 1.55）、瞬态簇抑制（0.16）、低频地板抑制（0.35，20–80 Hz）
 
-处理对象：合成数据集 `synth_mix/synth_000042_mix.wav`（单条示例），输出两张对比图到 `synth_mix_plots_042/`。
+处理对象：示例数据 `example_data/synth_000042_mix.wav`（已随仓库提供），输出两张对比图到 `example_data/output/`。
 
 ## 运行方式
 
@@ -50,4 +50,4 @@ python denoising/plot_042.py
 
 - 小波分解展示图中使用的 `db6`（`PLOT_WAVELET_NAME`）仅用于**可视化分解层**，实际降噪阈值处理使用 **Haar** 小波。
 - `batch_denoise_paper.py` 为自包含脚本（已内嵌 V2 算法全部函数），可独立运行，无需 `import denoising_v2`。
-- 脚本内 `BASE_DIR` / `SRC` / `OUT` 为 Windows 绝对路径，需按你的目录修改。
+- `plot_042.py` 已改为基于脚本所在目录的相对路径（示例数据与输出均在 `example_data/` 下，无需改路径）；`batch_denoise_paper.py` 的 `BASE_DIR` 仍为绝对路径，需按你的目录修改。

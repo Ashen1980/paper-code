@@ -6,8 +6,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-SRC = r"c:\Users\26287\Desktop\Work\Feature Extraction2.0\Feature Extraction\人工混合数据集\synth_mix\synth_000042_mix.wav"
-OUT = r"c:\Users\26287\Desktop\Work\Feature Extraction2.0\Feature Extraction\人工混合数据集\synth_mix_plots_042"
+_HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(_HERE, "example_data", "synth_000042_mix.wav")
+OUT = os.path.join(_HERE, "example_data", "output")
 os.makedirs(OUT, exist_ok=True)
 
 LOW_HZ, HIGH_HZ = 28.0, 240.0
