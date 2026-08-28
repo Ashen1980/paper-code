@@ -1,0 +1,22 @@
+# 数据与输出（不随仓库提供）
+*.wav
+*.csv
+*.joblib
+*.rar
+*.zip
+*.7z
+
+# 输出目录
+out_*/
+*/out_*/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# 隐私数据
+自采数据*/
+*自采数据*/
+
+# 系统文件
+.DS_Store
+Thumbs.db

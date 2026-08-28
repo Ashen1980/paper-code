@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+PyWavelets
+matplotlib
+seaborn
+joblib
+scikit-learn
+opensmile
+librosa
+soundfile
+shap
